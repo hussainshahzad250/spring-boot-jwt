@@ -4,7 +4,6 @@ import com.hussain.constant.Constant;
 import com.hussain.entity.Role;
 import com.hussain.entity.Token;
 import com.hussain.entity.User;
-import com.hussain.exception.ObjectNotFoundException;
 import com.hussain.repository.TokenRepository;
 import com.hussain.repository.UserRepository;
 import com.hussain.request.LoginRequest;
@@ -25,10 +24,10 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class AuthService implements Constant {
 
+    private final JwtService jwtService;
     private final UserRepository repository;
     private final TokenRepository tokenRepository;
     private final PasswordEncoder passwordEncoder;
-    private final JwtService jwtService;
     private final AuthenticationManager authenticationManager;
 
     public LoginResponse register(RegisterRequest request) {
@@ -45,7 +44,12 @@ public class AuthService implements Constant {
         return LoginResponse.builder().token(jwtToken).build();
     }
 
-    public Response authenticate(LoginRequest request) throws ObjectNotFoundException {
+    private void saveUserToken(User user, String jwtToken) {
+        Token token = Token.builder().user(user).token(jwtToken).expired(false).revoked(false).build();
+        tokenRepository.save(token);
+    }
+
+    public Response authenticate(LoginRequest request) {
         authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(
                         request.getEmail(),
@@ -61,11 +65,6 @@ public class AuthService implements Constant {
         revokeAllUserTokens(user);
         saveUserToken(user, jwtToken);
         return new Response(SUCCESS, LoginResponse.builder().token(jwtToken).build(), HttpStatus.OK);
-    }
-
-    private void saveUserToken(User user, String jwtToken) {
-        Token token = Token.builder().user(user).token(jwtToken).expired(false).revoked(false).build();
-        tokenRepository.save(token);
     }
 
     private void revokeAllUserTokens(User user) {

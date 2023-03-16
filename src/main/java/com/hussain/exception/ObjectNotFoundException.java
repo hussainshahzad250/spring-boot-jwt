@@ -1,7 +1,9 @@
 package com.hussain.exception;
 
+import lombok.Getter;
 import org.springframework.http.HttpStatus;
 
+@Getter
 public class ObjectNotFoundException extends Exception {
 
     private static final long serialVersionUID = 460396670844622215L;
@@ -28,17 +30,4 @@ public class ObjectNotFoundException extends Exception {
         this.httpStatus = httpStatus;
         this.responseObject = responseObject;
     }
-
-    public int getCode() {
-        return code;
-    }
-
-    public HttpStatus getHttpStatus() {
-        return httpStatus;
-    }
-
-    public Object getResponseObject() {
-        return responseObject;
-    }
-
 }

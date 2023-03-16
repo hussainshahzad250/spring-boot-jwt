@@ -6,10 +6,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/api")
 public class TestController {
 
-    @GetMapping("/hello")
+    @GetMapping("/")
     public ResponseEntity<String> hello() {
         return ResponseEntity.ok("Hello from Spring Boot Application");
     }
