@@ -1,5 +1,5 @@
-server:
-  port: 8080
+server.port: 8080
+server.servlet.context-path: /auth-management
 spring:
   application:
     name: spring-boot-jwt
