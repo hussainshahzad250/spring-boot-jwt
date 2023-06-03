@@ -29,28 +29,28 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(value = FileNotFoundException.class)
     @ResponseBody
     public ResponseEntity<Object> handleFileNotFoundException(FileNotFoundException ex) {
-        log.info("FileNotFound Exception occurs => {}", ex);
+        log.info("FileNotFound Exception occurs => {}", ex.getMessage());
         return new ResponseEntity<>(new Response("File does not exist", HttpStatus.NOT_FOUND), HttpStatus.OK);
     }
 
     @ExceptionHandler(value = BadRequestException.class)
     @ResponseBody
     public ResponseEntity<Object> handleBadRequestException(BadRequestException ex) {
-        log.info("BadRequestException occurs => {}", ex);
+        log.info("BadRequestException occurs => {}", ex.getMessage());
         return new ResponseEntity<>(new Response(ex.getMessage(), ex.getHttpStatus()), HttpStatus.OK);
     }
 
     @ExceptionHandler(value = ObjectNotFoundException.class)
     @ResponseBody
     public ResponseEntity<Object> handleObjectNotFoundException(ObjectNotFoundException ex) {
-        log.info("ObjectNotFoundException occurs => {}", ex);
+        log.info("ObjectNotFoundException occurs => {}", ex.getMessage());
         return new ResponseEntity<>(new Response(ex.getMessage(), ex.getHttpStatus()), HttpStatus.OK);
     }
 
     @ExceptionHandler(value = BadCredentialsException.class)
     @ResponseBody
     public ResponseEntity<Object> handleBadCredentialsException(BadCredentialsException ex) {
-        log.info("BadCredentialsException occurs => {}", ex);
+        log.info("BadCredentialsException occurs => {}", ex.getMessage());
         return new ResponseEntity<>(new Response(ex.getMessage(), HttpStatus.BAD_REQUEST), HttpStatus.BAD_REQUEST);
     }
 
@@ -64,7 +64,7 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(value = HttpRequestMethodNotSupportedException.class)
     @ResponseBody
     public ResponseEntity<Object> handleFileNotFoundException(HttpRequestMethodNotSupportedException ex) {
-        log.info("HttpRequestMethodNotSupportedException occurs => {}", ex);
+        log.info("HttpRequestMethodNotSupportedException occurs => {}", ex.getMessage());
         return new ResponseEntity<>(new Response(ex.getMessage(), HttpStatus.BAD_REQUEST), HttpStatus.BAD_REQUEST);
     }
 
