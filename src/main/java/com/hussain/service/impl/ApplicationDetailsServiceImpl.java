@@ -39,7 +39,9 @@ public class ApplicationDetailsServiceImpl implements ApplicationDetailsService,
 
     @Override
     public ApplicationDetailsResponse getById(Long id) {
-        return ApplicationDetailsConverter.getResponseFromEntity(applicationDetailsRepository.findByApplicationDetailsPK_OrgIdAndApplicationDetailsPK_ApplicationId(1L, id).orElse(null));
+//        return ApplicationDetailsConverter.getResponseFromEntity(applicationDetailsRepository.findByApplicationDetailsPK_OrgIdAndApplicationDetailsPK_ApplicationId(1L, id).orElse(null));
+//        return ApplicationDetailsConverter.getResponseFromEntity(applicationDetailsRepository.findByOrgIdAndApplicationId(1L, id).orElse(null));
+        return ApplicationDetailsConverter.getResponseFromEntity(applicationDetailsRepository.findByCompositeKey(1L, id).orElse(null));
     }
 
     @Override

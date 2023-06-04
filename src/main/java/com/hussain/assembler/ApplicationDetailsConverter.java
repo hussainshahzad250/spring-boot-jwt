@@ -26,9 +26,9 @@ public class ApplicationDetailsConverter {
             return null;
         ApplicationDetails applicationDetails = new ApplicationDetails();
         ApplicationDetailsPK applicationDetailsPK = new ApplicationDetailsPK();
-        applicationDetailsPK.setOrgId(1L);
-        applicationDetailsPK.setApplicationId(request.getApplicationCode());
-        applicationDetails.setApplicationDetailsPK(applicationDetailsPK);
+        applicationDetails.setOrgId(1L);
+        applicationDetails.setApplicationId(request.getApplicationCode());
+//        applicationDetails.setApplicationDetailsPK(applicationDetailsPK);
         applicationDetails.setClientId(request.getClientId());
         applicationDetails.setAppliedOn(DateTimeUtil.stringToLocalDate(request.getAppliedOn(),DateTimeUtil.DD_MM_YYYY));
         applicationDetails.setAppliedAmount(request.getAppliedAmount());
@@ -95,7 +95,7 @@ public class ApplicationDetailsConverter {
         if (request == null)
             return null;
         ApplicationDetailsResponse applicationDetailsResponse = new ApplicationDetailsResponse();
-        applicationDetailsResponse.setApplicationDetailsId(request.getApplicationDetailsPK().getApplicationId());
+        applicationDetailsResponse.setApplicationDetailsId(request.getApplicationId());
         applicationDetailsResponse.setClientId(request.getClientId());
         applicationDetailsResponse.setAppliedOn(request.getAppliedOn());
         applicationDetailsResponse.setAppliedAmount(request.getAppliedAmount());
