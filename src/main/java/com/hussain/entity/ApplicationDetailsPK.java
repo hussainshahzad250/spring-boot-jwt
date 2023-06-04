@@ -17,4 +17,18 @@ public class ApplicationDetailsPK implements Serializable {
 
     @Column(name = "APPLICATION_ID")
     private Long applicationId;
+
+//    @Override
+//    public boolean equals(Object o) {
+//        if (this == o) return true;
+//        if (!(o instanceof ApplicationDetailsPK)) return false;
+//        ApplicationDetailsPK other = (ApplicationDetailsPK) o;
+//        return Objects.equals(getApplicationId(), other.getApplicationId()) &&
+//                Objects.equals(getOrgId(), other.getOrgId());
+//    }
+//
+//    @Override
+//    public int hashCode() {
+//        return Objects.hash(getApplicationId(), getOrgId());
+//    }
 }

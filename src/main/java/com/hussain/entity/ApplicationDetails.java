@@ -4,6 +4,10 @@ import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.envers.AuditTable;
 import org.hibernate.envers.Audited;
+import org.springframework.data.annotation.CreatedBy;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedBy;
+import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
@@ -20,7 +24,7 @@ import java.util.Date;
 @AuditTable(value = "APPLICATION_DETAIL_H")
 @EntityListeners(AuditingEntityListener.class)
 @Table(name = "APPLICATION_DETAIL")
-public class ApplicationDetails extends BaseEntity implements Serializable {
+public class ApplicationDetails extends AbstractPersistableEntity<ApplicationDetailsPK>  implements Serializable {
 
 	private static final long serialVersionUID = -2338626292552177485L;
 
@@ -217,4 +221,24 @@ public class ApplicationDetails extends BaseEntity implements Serializable {
 	@Column(name = "EKYC_SKIP_REASON")
 	private String ekycSkipReason;
 
+	@CreatedBy
+	@Column(name = "INSERTED_BY")
+	private String insertedBy;
+
+	@CreatedDate
+	@Column(name = "INSERTED_ON")
+	private LocalDateTime insertedOn;
+
+	@LastModifiedBy
+	@Column(name = "UPDATED_BY")
+	protected String updatedBy;
+
+	@LastModifiedDate
+	@Column(name = "UPDATED_ON")
+	private LocalDateTime updatedOn;
+
+	@Override
+	public ApplicationDetailsPK getId() {
+		return applicationDetailsPK;
+	}
 }
