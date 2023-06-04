@@ -75,6 +75,14 @@
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-envers</artifactId>
 		</dependency>
+
+		<dependency>
+			<groupId>com.github.ozlerhakan</groupId>
+			<artifactId>poiji</artifactId>
+			<version>3.1.7</version>
+		</dependency>
+
+
 	</dependencies>
 
 	<build>
