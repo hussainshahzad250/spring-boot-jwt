@@ -16,21 +16,20 @@ public class CodeHelper {
 
 	public static void main(String[] args) {
 		List<TableData> tableList = new ArrayList<>();
-		tableList.add(new TableData("orgId", "Long", "", true, false));
-		tableList.add(new TableData("loanAmount", "BigDecimal", "", true, false));
-		tableList.add(new TableData("tenure", "Integer", "", true, false));
-		createCollection("ApplicationDetails", tableList);
+		tableList.add(new TableData("customerCode", "String", "", true, false));
+		tableList.add(new TableData("customerName", "String", "", true, false));
+		createCollection("CustomerMaster", tableList);
 	}
 
 	private static void createCollection(String entityName, List<TableData> fieldsMap) {
-//		createEntity(MAIN_PACKAGE_PATH + "entity/", entityName, fieldsMap);
-//		createRepository(MAIN_PACKAGE_PATH + "repository/", entityName, fieldsMap);
-//		createPojo(MAIN_PACKAGE_PATH + "pojo/", entityName, fieldsMap);
-//		createRequest(MAIN_PACKAGE_PATH + "request/", entityName);
-//		createResponse(MAIN_PACKAGE_PATH + "response/", entityName);
-//		createService(MAIN_PACKAGE_PATH + "service/", entityName, fieldsMap);
-//		createServiceImpl(MAIN_PACKAGE_PATH + "service/impl/", entityName, fieldsMap);
-//		createController(MAIN_PACKAGE_PATH + "controller/", entityName, fieldsMap);
+		createEntity(MAIN_PACKAGE_PATH + "entity/", entityName, fieldsMap);
+		createRepository(MAIN_PACKAGE_PATH + "repository/", entityName, fieldsMap);
+		createPojo(MAIN_PACKAGE_PATH + "pojo/", entityName, fieldsMap);
+		createRequest(MAIN_PACKAGE_PATH + "request/", entityName);
+		createResponse(MAIN_PACKAGE_PATH + "response/", entityName);
+		createService(MAIN_PACKAGE_PATH + "service/", entityName, fieldsMap);
+		createServiceImpl(MAIN_PACKAGE_PATH + "service/impl/", entityName, fieldsMap);
+		createController(MAIN_PACKAGE_PATH + "controller/", entityName, fieldsMap);
 		createConverter(MAIN_PACKAGE_PATH + "assembler/", entityName, fieldsMap);
 	}
 
@@ -77,7 +76,7 @@ public class CodeHelper {
 			fileWriter.write("import " + MAIN_PACKAGE + ".constant.Constant;\n");
 			fileWriter.write("import org.springframework.util.CollectionUtils;\n");
 			fileWriter.write("import " + MAIN_PACKAGE + ".constant.RestMappingConstants;\n");
-			fileWriter.write("import com.sas.tokenlib.response.Response;\n");
+			fileWriter.write("import "+ MAIN_PACKAGE +".response.Response;\n");
 			fileWriter.write("import " + MAIN_PACKAGE + ".exception.ObjectNotFoundException;\n");
 
 			fileWriter.write("import " + MAIN_PACKAGE + ".request." + fileName + "Request;\n");
